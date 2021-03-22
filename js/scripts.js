@@ -26,20 +26,22 @@ $.get(API_URL, {}, function(data){
     var $list = $('.list');
 
     for(var i=0; i< list.length; i++) {
-        var item = list[i];
         //각 아이템 하나하나마다 DOM객체를 만들어서 $list에 추가한다.
-    }
+        var item = list[i];
 
-    //템플릿을 이용하여 엘리먼트 생성
-    var $elem = $('#item-template')
+        //템플릿을 이용하여 엘리먼트 생성
+        var $elem = $('#item-template')
         .clone()
         .removeAttr('id');
 
-    $elem.find('.item-no').html(i+1); //$elem에 속한 자식들만 나오게 함
-    $elem.find('.item-name').html(item.name);
-    $elem.find('.item-addr').html(item.addr);
+        $elem.find('.item-no').html(i+1); //$elem에 속한 자식들만 나오게 함
+        $elem.find('.item-name').html(item.name);
+        $elem.find('.item-addr').html(item.addr);
 
-    $list.append($elem); //인자로 받은 엘리먼트를 가장 마지막자식으로 추가함으로써 전체 목록 생성
+        //$list.append($elem); //인자로 받은 엘리먼트를 가장 마지막자식으로 추가함으로써 전체 목록 생성
+    }
+
+   
 });
 
 
