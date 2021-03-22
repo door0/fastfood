@@ -5,14 +5,14 @@ $(function() {
         var searchKeyword = $('#txt-search').val();
         search(searchKeyword);
     });
-});
 
-//enter키 = 검색키
-$('#txt-search').on('keypress', function(e) {
-    if(e.keyCode === 13) {
-        $('.btn-search').trigger('click'); // 실제로 마우스로 클릭하지 않아도 trigger 강제로 이벤트 발생시킴으로써 효과나타남
-    }
-})
+    //enter키 = 검색키
+    $('#txt-search').on('keypress', function(e) {
+        if(e.keyCode === 13) {
+            $('.btn-search').trigger('click'); // 실제로 마우스로 클릭하지 않아도 trigger 강제로 이벤트 발생시킴으로써 효과나타남
+        }
+    });
+});
 
 //패스트 푸드점 개수 출력하기 
 function search(searchKeyword) {
