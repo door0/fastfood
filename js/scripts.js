@@ -38,7 +38,7 @@ $.get(API_URL, {}, function(data){
         $elem.find('.item-name').html(item.name);
         $elem.find('.item-addr').html(item.addr);
 
-        //$list.append($elem); //인자로 받은 엘리먼트를 가장 마지막자식으로 추가함으로써 전체 목록 생성
+        $list.append($elem); //인자로 받은 엘리먼트를 가장 마지막자식으로 추가함으로써 전체 목록 생성
     }
 
    
