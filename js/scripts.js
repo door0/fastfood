@@ -12,6 +12,8 @@ $(function() {
             $('.btn-search').trigger('click'); // 실제로 마우스로 클릭하지 않아도 trigger 강제로 이벤트 발생시킴으로써 효과나타남
         }
     });
+
+    $('#txt-search').focus();
 });
 
 //패스트 푸드점 개수 출력하기 
@@ -33,18 +35,21 @@ function search(page, perPage, searchKeyword) { //10개씩 보기, 20개씩 보�
             $('.total').html('총 '+ total +'개의 패스트푸드점을 찾았습니다. ');
 
             //패스트푸드점 목록 출력하기
-            var $list = $('.list');
+            var $list = $('.list').empty();
 
             for(var i=0; i< list.length; i++) {
                 //각 아이템 하나하나마다 DOM객체를 만들어서 $list에 추가한다.
                 var item = list[i];
 
-                //템플릿을 이용하여 엘리먼트 생성
+                // 1. 템플릿을 복제한다.
+                // 2. 복제한 템플릿에 데이터를 세팅한다.
+                // 3. 목록에 복제한 템플릿을 추가한다.
                 var $elem = $('#item-template')
-                .clone()
-                .removeAttr('id');
+                    .clone()
+                    .removeAttr('id');
 
-                $elem.find('.item-no').html(i+1); //$elem에 속한 자식들만 나오게 함
+                var no = (page - 1) * perPage + i + 1;
+                $elem.find('.item-no').html(no); //$elem에 속한 자식들만 나오게 함
                 $elem.find('.item-name').html(item.name);
                 $elem.find('.item-addr').html(item.addr);
 
@@ -75,7 +80,7 @@ function showPaging(page, perPage, total, searchKeyword) {
     if( nextPage > totalPages)
         nextPage = totalPages;
 
-    var $prevElem = $('<a href = "javascript:search(' + prevPage + ',' + perPage + ',\'' + searchKeyword + '\')")>이전</a>');
+    var $prevElem = $(`<a href = "javascript:search(${prevPage},${perPage},'${searchKeyword}')">이전</a>`);
     $prevElem.addClass('prev');
     $paging.append($prevElem);
 
@@ -89,7 +94,7 @@ function showPaging(page, perPage, total, searchKeyword) {
         $paging.append($elem);
     }
 
-    var $nextElem = $('<a href = "javascript:search(' + nextPage + ',' + perPage + ',\'' + searchKeyword + '\')")>다음</a>');
+    var $nextElem = $(`<a href = "javascript:search(${nextPage},${perPage},'${searchKeyword}')">다음</a>`);
     $nextElem.addClass('next');
     $paging.append($nextElem);
 }
