@@ -62,7 +62,7 @@ function showPaging(page, perPage, total, searchKeyword) {
     var numPages = 5;
     var pageStart = Math.floor((page - 1) / numPages) * numPages + 1;
     var pageEnd = pageStart + numPages - 1;
-    var totalPages = Math.floor((total - 1) / perPage) + 1; // 총 페이지수
+    var totalPages = Math.floor(total / perPage) + 1; // 총 페이지수
 
     if(pageEnd > totalPages) 
         pageEnd = totalPages;
@@ -80,7 +80,6 @@ function showPaging(page, perPage, total, searchKeyword) {
     $paging.append($prevElem);
 
     
-
     for(var i = pageStart; i <= pageEnd; i++) {
         var $elem = $('<a href = "javascript:search(' + i + ',' + perPage + ',\'' + searchKeyword + '\')">' + i + '</a>');
 
@@ -89,4 +88,8 @@ function showPaging(page, perPage, total, searchKeyword) {
         }
         $paging.append($elem);
     }
+
+    var $nextElem = $('<a href = "javascript:search(' + nextPage + ',' + perPage + ',\'' + searchKeyword + '\')")>다음</a>');
+    $nextElem.addClass('next');
+    $paging.append($nextElem);
 }
