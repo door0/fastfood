@@ -3,7 +3,7 @@ var API_URL = 'https://floating-harbor-78336.herokuapp.com/fastfood'
 $(function() {
     $('.btn-search').click(function() {
         var searchKeyword = $('#txt-search').val();
-        search(1, 10, searchKeyword); //search(null, null, searchKeyword); 과 같다.
+        search(1, null, searchKeyword);
     });
 
     //enter키 = 검색키
@@ -56,7 +56,7 @@ function search(page, perPage, searchKeyword) { //10개씩 보기, 20개씩 보�
                 $list.append($elem); //인자로 받은 엘리먼트를 가장 마지막자식으로 추가함으로써 전체 목록 생성
             }   
 
-            showPaging(page, perPage, total);
+            showPaging(page, perPage, total, searchKeyword);
         });
 }
 
@@ -80,13 +80,13 @@ function showPaging(page, perPage, total, searchKeyword) {
     if( nextPage > totalPages)
         nextPage = totalPages;
 
-    var $prevElem = $(`<a href = "javascript:search(${prevPage},${perPage},'${searchKeyword}')">이전</a>`);
+    var $prevElem = $('<a href="javascript:search(' + prevPage + ',' + perPage + ',\'' + searchKeyword + '\')">이전</a>');
     $prevElem.addClass('prev');
     $paging.append($prevElem);
 
     
     for(var i = pageStart; i <= pageEnd; i++) {
-        var $elem = $('<a href = "javascript:search(' + i + ',' + perPage + ',\'' + searchKeyword + '\')">' + i + '</a>');
+        var $elem = $('<a href="javascript:search(' + i + ',' + perPage + ',\'' + searchKeyword + '\')">' + i + '</a>');
 
         if(i === page) {
             $elem.addClass('current'); //css 수정할 수 있도록! 
@@ -94,7 +94,7 @@ function showPaging(page, perPage, total, searchKeyword) {
         $paging.append($elem);
     }
 
-    var $nextElem = $(`<a href = "javascript:search(${nextPage},${perPage},'${searchKeyword}')">다음</a>`);
+    var $nextElem = $('<a href="javascript:search(' + nextPage + ',' + perPage + ',\'' + searchKeyword + '\')">다음</a>');
     $nextElem.addClass('next');
     $paging.append($nextElem);
 }
