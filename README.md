@@ -13,4 +13,4 @@ HTML, CSS, JAVA SCRIPT로 만든 간단한 SEARCHING 페이지입니다. :satisf
 
 ## :calendar: Update
 
-2021/ 03/ 22
+2021/ 03/ 24
